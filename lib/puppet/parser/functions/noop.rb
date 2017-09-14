@@ -4,13 +4,13 @@ Puppet::Parser::Functions::newfunction(:noop, :doc => "Set noop default for all 
   child scopes, or explicitly on each resource.
   ") do |args|
 
-  if args.length == 1
-    unless args[0].is_a? Array
-      raise(Puppet::ParseError, "noop(): Requires an array")
-    end
-  else
-    raise(Puppet::ParseError, "noop(): Only takes one parameter")
-  end
+  # if args.length == 1
+  #   unless args[0].is_a? Array
+  #     raise(Puppet::ParseError, "noop(): Requires an array")
+  #   end
+  # else
+  #   raise(Puppet::ParseError, "noop(): Only takes one parameter")
+  # end
 
 
 
