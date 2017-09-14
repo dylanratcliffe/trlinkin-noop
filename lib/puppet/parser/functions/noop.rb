@@ -16,6 +16,8 @@ Puppet::Parser::Functions::newfunction(:noop, :doc => "Set noop default for all 
 
   class << self
     def lookupdefaults(type)
+      require 'pry'
+      binding.pry
       values = super(type)
 
       # Create a new :noop parameter with the specified value (true/false) for our defaults hash
