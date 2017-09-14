@@ -4,29 +4,31 @@ Puppet::Parser::Functions::newfunction(:noop, :doc => "Set noop default for all 
   child scopes, or explicitly on each resource.
   ") do |args|
 
-  if args.length > 0
-    unless [true, false].include? args[0]
-      raise(Puppet::ParseError, "noop(): Requires either "+
-        "no arguments or a Boolean as first argument")
+  if args.length == 1
+    unless args[0].is_a? Array
+      raise(Puppet::ParseError, "noop(): Requires an array")
     end
-    @noop_value = args[0]
   else
-    @noop_value = true
+    raise(Puppet::ParseError, "noop(): Only takes one parameter")
   end
 
-  class << self
+
+
+  class << resource('Class','role::test')
     def lookupdefaults(type)
-      require 'pry'
-      binding.pry
       values = super(type)
 
       # Create a new :noop parameter with the specified value (true/false) for our defaults hash
       noop = Puppet::Parser::Resource::Param.new(
-        :name => :noop, :value => @noop_value, :source => self.source )
+        :name => :noop, :value => true, :source => self.source )
 
       # Replace whatever defaults we recieved
       values[:noop] = noop
       values
     end
   end
+
+  require 'pry'
+  binding.pry
+
 end
