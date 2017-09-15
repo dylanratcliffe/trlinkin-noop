@@ -2,7 +2,7 @@
 Puppet::Parser::Functions::newfunction(:noop, :doc => "Set noop default for all resources
   in local scope and children scopes. This can be overriden in
   child scopes, or explicitly on each resource.
-  ") do |args|
+  ", :arity => 1) do |args|
 
   # if args.length == 1
   #   unless args[0].is_a? Array
