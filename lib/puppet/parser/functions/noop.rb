@@ -4,8 +4,8 @@ Puppet::Parser::Functions::newfunction(:noop, :arity => 1) do |args|
 
   require 'pry'
   binding.pry
-  
-  class << resource('Class','role::test')
+
+  class << catalog.resource('Class','role::test')
     def lookupdefaults(type)
       values = super(type)
 
