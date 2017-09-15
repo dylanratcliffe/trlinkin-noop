@@ -1,18 +1,6 @@
 # Set noop to true as default for current and children scopes, or 'reset' an inherited default with noop(false)
-Puppet::Parser::Functions::newfunction(:noop, :doc => "Set noop default for all resources
-  in local scope and children scopes. This can be overriden in
-  child scopes, or explicitly on each resource.
-  ", :arity => 1) do |args|
-
-  # if args.length == 1
-  #   unless args[0].is_a? Array
-  #     raise(Puppet::ParseError, "noop(): Requires an array")
-  #   end
-  # else
-  #   raise(Puppet::ParseError, "noop(): Only takes one parameter")
-  # end
-
-
+Puppet::Parser::Functions::newfunction(:noop, :arity => 1) do |args|
+  raise(Puppet::ParseError, "noop(): Requires an array") unless args[0].is_a? Array
 
   class << resource('Class','role::test')
     def lookupdefaults(type)
